@@ -19,5 +19,5 @@ def save_data(url, filename):
         json.dump(data, f)
 
 
-save_data('https://bluedollar.net/informal-rate/', 'blue.json')
-save_data('https://bluedollar.net/official-rate/', 'official.json')
+save_data('https://bluedollar.net/informal-rate/', 'data/blue.json')
+save_data('https://bluedollar.net/official-rate/', 'data/official.json')

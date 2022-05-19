@@ -21,8 +21,8 @@ var dom = document.getElementById("container");
 var myChart = echarts.init(dom);
 
 Promise.all([
-  fetch("blue.json"),
-  fetch("official.json"),
+  fetch("data/blue.json"),
+  fetch("data/official.json"),
 ]).then(responses => Promise.all(responses.map(r => r.json())))
   .then(jsons => {
     const [blue, official] = jsons;
