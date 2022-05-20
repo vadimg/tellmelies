@@ -55,9 +55,12 @@ Promise.all([
       },
       legend: {
         data: ['% Difference', 'Official Exchange Rate', 'Blue Dollar Rate'],
+        selectedMode: false,
+        top: 25,
         left: 10
       },
       toolbox: {
+        top: 15,
         feature: {
           dataZoom: {
             yAxisIndex: 'none'
@@ -75,29 +78,29 @@ Promise.all([
       },
       dataZoom: [
         {
+          type: 'slider',
           show: true,
           realtime: true,
-          xAxisIndex: [0, 1]
+          xAxisIndex: [0, 1],
+          bottom: 30,
         },
         {
           type: 'inside',
           realtime: true,
-          start: 30,
-          end: 70,
-          xAxisIndex: [0, 1]
+          xAxisIndex: [0, 1],
         }
       ],
       grid: [
         {
           left: 60,
           right: 50,
-          height: '35%'
+          height: '40%'
         },
         {
           left: 60,
           right: 50,
-          top: '55%',
-          height: '35%'
+          top: '50%',
+          height: '40%'
         }
       ],
       xAxis: [
@@ -105,24 +108,35 @@ Promise.all([
           type: 'category',
           boundaryGap: false,
           axisLine: { onZero: true },
+          axisLabel: { show: false, },
           data: days
         },
         {
           gridIndex: 1,
           type: 'category',
-          boundaryGap: false,
-          axisLine: { onZero: true },
+          boundaryGap: true,
+          axisLine: { show: false },
+          position: 'top',
+          axisLabel: { show: true, },
           data: days,
         }
       ],
       yAxis: [
         {
-          name: '% difference in rates',
+          name: '% Difference Between Blue / Official',
+          nameLocation: 'middle',
+          nameGap: 45,
+          axisLabel : {
+            formatter: '{value}%'
+          },
+          min: -5,
           type: 'value'
         },
         {
           gridIndex: 1,
           name: 'Pesos Per Dollar',
+          nameLocation: 'middle',
+          nameGap: 45,
           type: 'log',
         }
       ],
@@ -156,4 +170,8 @@ Promise.all([
     };
 
     myChart.setOption(option);
+    window.onresize = function() {
+      myChart.resize();
+    };
+
   });
