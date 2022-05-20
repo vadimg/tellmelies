@@ -37,20 +37,17 @@ Promise.all([
 ]).then(responses => Promise.all(responses.map(r => r.json())))
   .then(jsons => {
     const [blue, official] = jsons;
-    console.log(blue);
-    console.log(official);
 
     let days = intersect(blue.map(o => o['date']), official.map(o => o['date']));
     days.sort();
-    console.log(days);
 
     const dataBlue = extractData(blue, days);
     const dataOfficial = extractData(official, days);
 
     let dataLie = [];
     for (let i=0; i < days.length; ++i) {
-      let num = 100 * (dataBlue[i] / dataOfficial[i] - 1);
-      dataLie.push(+num.toFixed(2));
+      let pct = 100 * (dataBlue[i] / dataOfficial[i] - 1);
+      dataLie.push(+pct.toFixed(2));
     }
 
     var option = {
@@ -67,11 +64,11 @@ Promise.all([
       legend: {
         data: ['% Difference', 'Official Exchange Rate', 'Blue Dollar Rate'],
         selectedMode: false,
-        top: 20,
+        top: 25,
         left: 10
       },
       toolbox: {
-        top: 15,
+        top: 18,
         feature: {
           dataZoom: {
             yAxisIndex: 'none'
@@ -166,9 +163,14 @@ Promise.all([
           data: [],
           markArea: {
             silent: true,
+            label: { position: 'insideTop' },
             itemStyle: {
               color: '#3F93C1',
               opacity: 0.2,
+            },
+            label: {
+              color: '#000',
+              position: 'insideTop'
             },
             data: [
               [
@@ -194,6 +196,10 @@ Promise.all([
               color: '#3F93C1',
               opacity: 0.3,
             },
+            label: {
+              color: '#000',
+              position: 'insideTop'
+            },
             data: [
               [
                 {
@@ -217,6 +223,10 @@ Promise.all([
             itemStyle: {
               color: '#3F93C1',
               opacity: 0.2,
+            },
+            label: {
+              color: '#000',
+              position: 'insideTop'
             },
             data: [
               [
@@ -242,6 +252,10 @@ Promise.all([
               color: '#F7D84C',
               opacity: 0.2,
             },
+            label: {
+              color: '#000',
+              position: 'insideTop'
+            },
             data: [
               [
                 {
@@ -265,6 +279,10 @@ Promise.all([
             itemStyle: {
               color: '#3F93C1',
               opacity: 0.2,
+            },
+            label: {
+              color: '#000',
+              position: 'insideTop'
             },
             data: [
               [
