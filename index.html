@@ -2,12 +2,13 @@
 <html style="height: 100%">
     <head>
         <meta charset="utf-8">
+        <title>How much is the Argentinian government lying about its exchange rate?</title>
     </head>
     <body style="height: 100%; margin: 0; padding: 10px">
         <div id="container" style="height: 100%"></div>
 
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.2/dist/echarts.min.js"></script>
-<script>
+<script type="text/javascript">
 function intersect(a, b) {
   var setA = new Set(a);
   var setB = new Set(b);
@@ -54,7 +55,7 @@ Promise.all([
 
     var option = {
       title: {
-        text: 'How much is the Argentinian government lying about its exchange rate?',
+        text: document.title,
         left: 'center'
       },
       tooltip: {
@@ -66,7 +67,7 @@ Promise.all([
       legend: {
         data: ['% Difference', 'Official Exchange Rate', 'Blue Dollar Rate'],
         selectedMode: false,
-        top: 25,
+        top: 20,
         left: 10
       },
       toolbox: {
@@ -156,7 +157,127 @@ Promise.all([
           type: 'line',
           symbol: 'none',
           data: dataLie,
-          color: '#843511'
+          color: '#843511',
+        },
+        {
+          type: 'line',
+          xAxisIndex: 0,
+          yAxisIndex: 0,
+          data: [],
+          markArea: {
+            silent: true,
+            itemStyle: {
+              color: '#3F93C1',
+              opacity: 0.2,
+            },
+            data: [
+              [
+                {
+                  name: "Duhalde",
+                  xAxis: days[0],
+                },
+                {
+                  xAxis: '2003-05-26' // hack to make it work cuz there's no data for 2003-05-25
+                },
+              ]
+            ]
+          },
+        },
+        {
+          type: 'line',
+          xAxisIndex: 0,
+          yAxisIndex: 0,
+          data: [],
+          markArea: {
+            silent: true,
+            itemStyle: {
+              color: '#3F93C1',
+              opacity: 0.3,
+            },
+            data: [
+              [
+                {
+                  name: "Néstor Kirchner",
+                  xAxis: '2003-05-26' // hack to make it work cuz there's no data for 2003-05-25
+                },
+                {
+                  xAxis: '2007-12-10'
+                },
+              ]
+            ]
+          },
+        },
+        {
+          type: 'line',
+          xAxisIndex: 0,
+          yAxisIndex: 0,
+          data: [],
+          markArea: {
+            silent: true,
+            itemStyle: {
+              color: '#3F93C1',
+              opacity: 0.2,
+            },
+            data: [
+              [
+                {
+                  name: "Cristina Kirchner",
+                  xAxis: '2007-12-10'
+                },
+                {
+                  xAxis: '2015-12-10'
+                },
+              ]
+            ]
+          },
+        },
+        {
+          type: 'line',
+          xAxisIndex: 0,
+          yAxisIndex: 0,
+          data: [],
+          markArea: {
+            silent: true,
+            itemStyle: {
+              color: '#F7D84C',
+              opacity: 0.2,
+            },
+            data: [
+              [
+                {
+                  name: "Macri",
+                  xAxis: '2015-12-10'
+                },
+                {
+                  xAxis: '2019-12-10'
+                },
+              ]
+            ]
+          },
+        },
+        {
+          type: 'line',
+          xAxisIndex: 0,
+          yAxisIndex: 0,
+          data: [],
+          markArea: {
+            silent: true,
+            itemStyle: {
+              color: '#3F93C1',
+              opacity: 0.2,
+            },
+            data: [
+              [
+                {
+                  name: "Fernández",
+                  xAxis: '2019-12-10'
+                },
+                {
+                  xAxis: days[days.length - 1],
+                },
+              ]
+            ]
+          },
         },
         {
           name: 'Official Exchange Rate',
