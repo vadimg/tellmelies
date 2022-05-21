@@ -31,6 +31,8 @@ function extractData(data, days) {
 var dom = document.getElementById("container");
 var myChart = echarts.init(dom);
 
+const FONT_SIZE = 16;
+
 Promise.all([
   fetch("data/blue.json"),
   fetch("data/official.json"),
@@ -100,12 +102,12 @@ Promise.all([
       ],
       grid: [
         {
-          left: 60,
+          left: 70,
           right: 50,
           height: '40%'
         },
         {
-          left: 60,
+          left: 70,
           right: 50,
           top: '50%',
           height: '40%'
@@ -116,7 +118,10 @@ Promise.all([
           type: 'category',
           boundaryGap: false,
           axisLine: { onZero: true },
-          axisLabel: { show: false, },
+          axisLabel: {
+            fontSize: FONT_SIZE,
+            show: false,
+          },
           data: days
         },
         {
@@ -125,7 +130,10 @@ Promise.all([
           boundaryGap: true,
           axisLine: { show: false },
           position: 'top',
-          axisLabel: { show: true, },
+          axisLabel: {
+            fontSize: FONT_SIZE,
+            show: true,
+          },
           data: days,
         }
       ],
@@ -133,8 +141,12 @@ Promise.all([
         {
           name: '% Difference Between Blue / Official',
           nameLocation: 'middle',
-          nameGap: 45,
+          nameTextStyle: {
+            fontSize: FONT_SIZE,
+          },
+          nameGap: 50,
           axisLabel : {
+            fontSize: FONT_SIZE,
             formatter: '{value}%'
           },
           min: -5,
@@ -143,8 +155,14 @@ Promise.all([
         {
           gridIndex: 1,
           name: 'Pesos Per Dollar',
+          axisLabel : {
+            fontSize: FONT_SIZE,
+          },
+          nameTextStyle: {
+            fontSize: FONT_SIZE
+          },
           nameLocation: 'middle',
-          nameGap: 45,
+          nameGap: 50,
           type: 'log',
         }
       ],
@@ -170,6 +188,7 @@ Promise.all([
             },
             label: {
               color: '#000',
+              fontSize: FONT_SIZE,
               position: 'insideTop'
             },
             data: [
@@ -198,6 +217,7 @@ Promise.all([
             },
             label: {
               color: '#000',
+              fontSize: FONT_SIZE,
               position: 'insideTop'
             },
             data: [
@@ -226,6 +246,7 @@ Promise.all([
             },
             label: {
               color: '#000',
+              fontSize: FONT_SIZE,
               position: 'insideTop'
             },
             data: [
@@ -254,6 +275,7 @@ Promise.all([
             },
             label: {
               color: '#000',
+              fontSize: FONT_SIZE,
               position: 'insideTop'
             },
             data: [
@@ -282,6 +304,7 @@ Promise.all([
             },
             label: {
               color: '#000',
+              fontSize: FONT_SIZE,
               position: 'insideTop'
             },
             data: [
