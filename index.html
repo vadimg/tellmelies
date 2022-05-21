@@ -28,6 +28,39 @@ function extractData(data, days) {
   return ret;
 }
 
+function chartArea(opt) {
+  return {
+    type: 'line',
+    xAxisIndex: 0,
+    yAxisIndex: 0,
+    data: [],
+    markArea: {
+      silent: true,
+      label: { position: 'insideTop' },
+      itemStyle: {
+        color: opt.color,
+        opacity: opt.opacity || 0.2,
+      },
+      label: {
+        color: '#000',
+        fontSize: opt.fontSize || FONT_SIZE,
+        position: 'insideTop'
+      },
+      data: [
+        [
+          {
+            name: opt.name,
+            xAxis: opt.start,
+          },
+          {
+            xAxis: opt.end
+          },
+        ]
+      ]
+    },
+  };
+}
+
 var dom = document.getElementById("container");
 var myChart = echarts.init(dom);
 
@@ -177,152 +210,38 @@ Promise.all([
           data: dataLie,
           color: '#843511',
         },
-        {
-          type: 'line',
-          xAxisIndex: 0,
-          yAxisIndex: 0,
-          data: [],
-          markArea: {
-            silent: true,
-            label: { position: 'insideTop' },
-            itemStyle: {
-              color: '#3F93C1',
-              opacity: 0.2,
-            },
-            label: {
-              color: '#000',
-              fontSize: FONT_SIZE,
-              position: 'insideTop'
-            },
-            data: [
-              [
-                {
-                  name: "Duhalde",
-                  xAxis: days[0],
-                },
-                {
-                  xAxis: '2003-05-26' // hack to make it work cuz there's no data for 2003-05-25
-                },
-              ]
-            ]
-          },
-        },
-        {
-          type: 'line',
-          xAxisIndex: 0,
-          yAxisIndex: 0,
-          data: [],
-          markArea: {
-            silent: true,
-            itemStyle: {
-              color: '#3F93C1',
-              opacity: 0.3,
-            },
-            label: {
-              color: '#000',
-              fontSize: FONT_SIZE,
-              position: 'insideTop'
-            },
-            data: [
-              [
-                {
-                  name: "Néstor Kirchner",
-                  xAxis: '2003-05-26' // hack to make it work cuz there's no data for 2003-05-25
-                },
-                {
-                  xAxis: '2007-12-10'
-                },
-              ]
-            ]
-          },
-        },
-        {
-          type: 'line',
-          xAxisIndex: 0,
-          yAxisIndex: 0,
-          data: [],
-          markArea: {
-            silent: true,
-            itemStyle: {
-              color: '#3F93C1',
-              opacity: 0.2,
-            },
-            label: {
-              color: '#000',
-              fontSize: FONT_SIZE,
-              position: 'insideTop'
-            },
-            data: [
-              [
-                {
-                  name: "Cristina Kirchner",
-                  xAxis: '2007-12-10'
-                },
-                {
-                  xAxis: '2015-12-10'
-                },
-              ]
-            ]
-          },
-        },
-        {
-          type: 'line',
-          xAxisIndex: 0,
-          yAxisIndex: 0,
-          data: [],
-          markArea: {
-            silent: true,
-            itemStyle: {
-              color: '#F7D84C',
-              opacity: 0.2,
-            },
-            label: {
-              color: '#000',
-              fontSize: FONT_SIZE,
-              position: 'insideTop'
-            },
-            data: [
-              [
-                {
-                  name: "Macri",
-                  xAxis: '2015-12-10'
-                },
-                {
-                  xAxis: '2019-12-10'
-                },
-              ]
-            ]
-          },
-        },
-        {
-          type: 'line',
-          xAxisIndex: 0,
-          yAxisIndex: 0,
-          data: [],
-          markArea: {
-            silent: true,
-            itemStyle: {
-              color: '#3F93C1',
-              opacity: 0.2,
-            },
-            label: {
-              color: '#000',
-              fontSize: FONT_SIZE,
-              position: 'insideTop'
-            },
-            data: [
-              [
-                {
-                  name: "Fernández",
-                  xAxis: '2019-12-10'
-                },
-                {
-                  xAxis: days[days.length - 1],
-                },
-              ]
-            ]
-          },
-        },
+        chartArea({
+          color: '#3F93C1',
+          name: "Duhalde",
+          fontSize: 12,  // must be smol because the chart area is smol
+          start: days[0],
+          end: '2003-05-26',  // hack to make it work cuz there's no data for 2003-05-25
+        }),
+        chartArea({
+          color: '#3F93C1',
+          opacity: 0.3,
+          name: "Néstor Kirchner",
+          start: '2003-05-26',  // hack to make it work cuz there's no data for 2003-05-25
+          end: '2007-12-10',
+        }),
+        chartArea({
+          color: '#3F93C1',
+          name: "Cristina Kirchner",
+          start: '2007-12-10',
+          end: '2015-12-10',
+        }),
+        chartArea({
+          color: '#F7D84C',
+          name: "Macri",
+          start: '2015-12-10',
+          end: '2019-12-10',
+        }),
+        chartArea({
+          color: '#3F93C1',
+          name: "Fernández",
+          start: '2019-12-10',
+          end: days[days.length-1],
+        }),
         {
           name: 'Official Exchange Rate',
           type: 'line',
