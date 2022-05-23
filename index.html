@@ -28,6 +28,33 @@ function extractData(data, days) {
   return ret;
 }
 
+function line(opt) {
+  return {
+    type: 'line',
+    xAxisIndex: 0,
+    yAxisIndex: 0,
+    data: [],
+    markLine: {
+      silent: true,
+      symbolSize: 0,
+      animation: false,
+      label: {
+        position: opt.position === 'left' ? 'insideMiddleTop' : 'insideMiddleBottom',
+        formatter: opt.name,
+      },
+      lineStyle: {
+        color: '#000',
+      },
+      data: [
+        {
+          xAxis: opt.date
+        }
+      ]
+    }
+  };
+}
+
+
 function chartArea(opt) {
   return {
     type: 'line',
@@ -210,6 +237,16 @@ Promise.all([
           data: dataLie,
           color: '#843511',
         },
+        line({
+          name: 'Presidential Primary Election',
+          date: '2019-08-13',  // hack to make it work because there's no data for 2019-08-11
+          position: 'left',
+        }),
+        line({
+          name: 'Presidential General Election',
+          date: '2019-10-30',  // hack to make it work because there's no data for 2019-10-30
+          position: 'right',
+        }),
         chartArea({
           color: '#3F93C1',
           name: "Duhalde",
