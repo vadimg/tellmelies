@@ -233,17 +233,18 @@ Promise.all([
         {
           name: '% Difference',
           type: 'line',
+          silent: true,
           symbol: 'none',
           data: dataLie,
           color: '#843511',
         },
         line({
-          name: 'Presidential Primary Election',
+          name: 'Presidential Primary',
           date: '2019-08-13',  // hack to make it work because there's no data for 2019-08-11
           position: 'left',
         }),
         line({
-          name: 'Presidential General Election',
+          name: 'Presidential Election',
           date: '2019-10-30',  // hack to make it work because there's no data for 2019-10-30
           position: 'right',
         }),
@@ -282,6 +283,7 @@ Promise.all([
         {
           name: 'Official Exchange Rate',
           type: 'line',
+          silent: true,
           xAxisIndex: 1,
           yAxisIndex: 1,
           symbol: 'none',
@@ -291,6 +293,7 @@ Promise.all([
         {
           name: 'Blue Dollar Rate',
           type: 'line',
+          silent: true,
           xAxisIndex: 1,
           yAxisIndex: 1,
           symbol: 'none',
