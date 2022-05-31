@@ -21,7 +21,7 @@
 <meta property="twitter:image" content="https://tellmelies.deapthoughts.com/img/card.png" /> <!-- also stupidly requires an absolute URL -->
 
     </head>
-    <body style="height: 100%; margin: 0; padding: 10px">
+    <body style="height: 100%; margin: 0; padding: 0px">
         <div id="container" style="height: 100%"></div>
 
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.2/dist/echarts.min.js"></script>
@@ -109,7 +109,7 @@ function chartArea(opt) {
 var dom = document.getElementById("container");
 var myChart = echarts.init(dom);
 
-const FONT_SIZE = 16;
+const FONT_SIZE = 20;
 
 Promise.all([
   fetch("data/blue.json"),
@@ -133,7 +133,10 @@ Promise.all([
     var option = {
       title: {
         text: document.title,
-        left: 'center'
+        left: 'center',
+        textStyle: {
+          fontSize: FONT_SIZE + 2,
+        },
       },
       tooltip: {
         trigger: 'axis',
@@ -147,11 +150,11 @@ Promise.all([
       legend: {
         data: ['% Difference', 'Official Exchange Rate', 'Blue Dollar Rate'],
         selectedMode: false,
-        top: 25,
+        top: 27,
         left: 10
       },
       toolbox: {
-        top: 18,
+        top: 20,
         feature: {
           dataZoom: {
             yAxisIndex: 'none'
@@ -183,13 +186,13 @@ Promise.all([
       ],
       grid: [
         {
-          left: 70,
-          right: 50,
+          left: 85,
+          right: 20,
           height: '40%'
         },
         {
-          left: 70,
-          right: 50,
+          left: 85,
+          right: 20,
           top: '50%',
           height: '40%'
         }
@@ -225,7 +228,7 @@ Promise.all([
           nameTextStyle: {
             fontSize: FONT_SIZE,
           },
-          nameGap: 50,
+          nameGap: 60,
           axisLabel : {
             fontSize: FONT_SIZE,
             formatter: '{value}%'
@@ -243,7 +246,7 @@ Promise.all([
             fontSize: FONT_SIZE
           },
           nameLocation: 'middle',
-          nameGap: 50,
+          nameGap: 60,
           type: 'log',
         }
       ],
